@@ -24,13 +24,23 @@ class Match ():
         self.player3 = Player()
         self.player4 = Player()
 
-        self table = Table()
+        self.table = Table()
 
+        self.UsScore = 0
+        self.theyScore = 0
+
+    def StartMatch(self):
+        self.player1.SetName(input("qual o nome do Jogar 1"))
+        self.player2.SetName(input("qual o nome do Jogar 2"))
+        self.player3.SetName(input("qual o nome do Jogar 3"))
+        self.player4.SetName(input("qual o nome do Jogar 4"))
+        
+        self.table.SetTable(self.player1,self.player2,self.player3,self.player4)
 #Classe que controla a rodada
-class Set():
+#class Set():
 
 #Classe que controla a mão
-class Game():
+#class Game():
 
 #Classe que controla o jogador
 class Player():
@@ -51,10 +61,10 @@ class Player():
     def SendCard(self,index):
         return self.hand.pop(index)
 
-    def GetGreatestCardIndex(self,vira)
+    def GetGreatestCardIndex(self,vira):
         for card in self.hand:
             if GreatestCard :
-                
+                GreatestCard = card
             else:
                 GreatestCard = card
         return GreatestCard
@@ -70,6 +80,8 @@ class Table():
 
         self.deck = Deck.Deck()
 
+        self.cardTurn = Deck.Card()
+
     def SetTable(self,ps,pe,pn,pw):
         self.southSit.SetPlayer(ps)
         self.eastSit.SetPlayer(pe)
@@ -78,6 +90,14 @@ class Table():
 
         self.deck.BuildDeck()
         self.deck.ShuffleDeck()
+
+        for nX in range(0,2):
+            ps.ReciveCard(self.deck.GetCard())
+            pe.ReciveCard(self.deck.GetCard())
+            pn.ReciveCard(self.deck.GetCard())
+            pw.ReciveCard(self.deck.GetCard())
+
+        self.cardTurn = self.deck.GetCard()
 
 #Classe que controla o assento do jogador
 class Sit():
@@ -90,3 +110,8 @@ class Sit():
 
     def setDealer(self, isDealer):
         self.isDealer = isDealer
+
+print("que comessem os jogos!!!!")
+myMatch = Match()
+
+myMatch.StartMatch()

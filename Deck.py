@@ -40,6 +40,9 @@ class Deck():
             newDeck.append(self.deck.pop(randint(0,nX)))
         self.deck = newDeck.copy()
 
+    def GetCard(self):
+        return self.deck.pop
+
 class Card():
     def __init__(self,suit="",rank=""):
         self.suit=suit
@@ -58,7 +61,7 @@ def CompareCard(card1,card2,turn):
     rankindex1 = card1.GetRank()
     rankindex2 = card2.GetRank()
 
-
+    """
     if rankindex1 = rankindex2:
         
     else:
@@ -67,11 +70,11 @@ def CompareCard(card1,card2,turn):
         else:
             card = card2
 
-    return card
+    return card"""
 
 def GetRankOrder(turn = "2"):
     rankOrder = ["4","5","6","7","Q","J","K","A","2","3"]
-    if turn = "3":
+    if turn == "3":
         rankOrder.append(rankOrder.pop(0))#vai pegar o 4
     else:
         rankOrder.append(rankOrder.pop(rankOrder.index(turn) + 1))
